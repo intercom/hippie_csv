@@ -1,0 +1,14 @@
+id,email,name,country,city,created_at,admin
+102,patrick@intercom.io,Patrick O'Doherty,United States,San Francisco,2014-04-28 23:57:08 UTC,true
+103,ben@intercom.io,Ben McRedmond,United States,San Francisco,2014-04-27 23:57:08 UTC,false
+104,ciaran@intercom.io,Ciaran Lee,Ireland,Dublin,2014-04-26 23:57:08 UTC,true
+105,eoghan@intercom.io,Eoghan McCabe,United States,San Francisco,2014-04-25 23:57:08 UTC,true
+106,des@intercom.io,Des Traynor,Ireland,Dublin,2014-04-24 23:57:08 UTC,true
+107,darragh@intercom.io,Darragh Curran,Ireland,Dublin,2014-04-23 23:57:08 UTC,true
+108,jeff@intercom.io,Jeff Gardner,Italy,Prata Camportaccio,2014-04-22 23:57:08 UTC,true
+109,macey@intercom.io,Macey Baker,United States,San Francisco,2014-04-21 23:57:08 UTC,true
+110,adam@intercom.io,Adam McCarthy,Dublin,Ireland,2014-04-20 23:57:08 UTC,true
+111,declan@intercom.io,Declan McGrath,Dublin,Ireland,2014-04-19 23:57:08 UTC,false
+112,peter@intercom.io,Peter McKenna,Dublin,Ireland,2014-04-18 23:57:08 UTC,false
+113,david@intercom.io,David Barett,Dublin,Ireland,2014-04-17 23:57:08 UTC,true
+114,eoin@intercom.io,Eoin Hennessy,Dublin,Ireland,2014-04-16 23:57:08 UTC,false
