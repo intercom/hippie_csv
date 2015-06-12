@@ -1,6 +1,6 @@
 require "hippie_csv/constants"
 
-module HippieCsv
+module HippieCSV
   module Support
     class << self
       def file_path_to_string(file_path)

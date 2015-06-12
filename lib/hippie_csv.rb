@@ -2,7 +2,7 @@ require "hippie_csv/version"
 require "hippie_csv/support"
 require "hippie_csv/errors"
 
-module HippieCsv
+module HippieCSV
   def self.read(path)
     string = Support.file_path_to_string(path)
     parse(string)

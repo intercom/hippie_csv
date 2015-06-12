@@ -1,7 +1,7 @@
 require "spec_helper"
 require "csv"
 
-describe HippieCsv do
+describe HippieCSV do
   let(:string) { "test" }
 
   describe ".read" do

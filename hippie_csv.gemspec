@@ -5,7 +5,7 @@ require "hippie_csv/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "hippie_csv"
-  spec.version       = HippieCsv::VERSION
+  spec.version       = HippieCSV::VERSION
   spec.authors       = ["Stephen O'Brien"]
   spec.email         = ["stephen@intercom.io"]
   spec.summary       = %q{Tolerant, liberal CSV parsing}
