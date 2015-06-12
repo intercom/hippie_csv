@@ -80,7 +80,7 @@ describe HippieCSV do
     it "works with escaped quotes" do
       path = fixture_path(:escaped_quotes)
       import = subject.read(path)
-      expect(import[0][1]).to eq("Lalo \"ElPapi\" Suarez")
+      expect(import[0][1]).to eq("Lalo \"ElPapi\" Neymar")
       expect(import[0][2]).to eq("lalo@example.com")
     end
 
