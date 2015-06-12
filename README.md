@@ -3,7 +3,7 @@
 [ ![Codeship Status for intercom/hippie_csv](https://codeship.com/projects/f3b188e0-f312-0132-75cb-5ed004d44c71/status?branch=master)](https://codeship.com/projects/85324)
 
 Ruby's `CSV` is great. It complies with the [proposed CSV spec](https://www.ietf.org/rfc/rfc4180.txt)
-pretty well. If you pass its methods bad or incompliant CSVs, it’ll rightfully
+pretty well. If you pass its methods bad or non-compliant CSVs, it’ll rightfully
 and loudly complain. It’s great 👍
 
 Except…if you want to be able to deal with files from the real world. At
