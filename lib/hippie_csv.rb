@@ -1,33 +1,22 @@
 require "hippie_csv/version"
 require "csv"
-require "pry"
 
 module HippieCsv
-  QUOTE_CHARACTERS = %w(" |).freeze
+  QUOTE_CHARACTERS = %w(" ').freeze
   DELIMETERS = %W(, ; \t).freeze
   DEFAULT_DELIMETER = ','.freeze
   ENCODING = 'utf-8'.freeze
+  ALTERNATE_ENCODING = 'utf-16'.freeze
   FIELD_SAMPLE_COUNT = 10
+  ENCODING_WITH_BOM = "bom|#{ENCODING}".freeze
 
   class << self
     def parse(path)
-      raw_string = encoded_string_for_file(path)
+      csv_string = encoded_string_for_file(path)
 
-      # tolerate some malformed files
-      quote_characters = QUOTE_CHARACTERS.dup
-      begin
-        quote_char = quote_characters.shift
-
-        # handle escaped quotes
-        string_minus_bad_escaping = raw_string.gsub("\\#{quote_char}", "#{quote_char}#{quote_char}")
-
-        parsed_csv = CSV.parse(string_minus_bad_escaping,
-          quote_char: quote_char,
-          col_sep: obtain_delimeter(raw_string, quote_char)
-        )
-      rescue CSV::MalformedCSVError
-        quote_characters.empty? ? raise : retry
-      end
+      parsed_csv = QUOTE_CHARACTERS.map do |quote_char|
+        try_parse_csv(csv_string, quote_char)
+      end.compact.first
 
       parsed_csv
     end
@@ -35,14 +24,32 @@ module HippieCsv
     private
 
     def encoded_string_for_file(path)
-      str = File.read(path, encoding: "bom|#{ENCODING}")
+      str = File.read(path, encoding: ENCODING_WITH_BOM)
 
       unless str.valid_encoding?
-        str.encode!('UTF-16', ENCODING, invalid: :replace, replace: '')
-        str.encode!(ENCODING, 'UTF-16')
+        str.encode!(ALTERNATE_ENCODING, ENCODING, invalid: :replace, replace: '')
+        str.encode!(ENCODING, ALTERNATE_ENCODING)
       end
 
       str.encode!(str.encoding, universal_newline: true)
+    end
+
+    def try_parse_csv(string, quote_char)
+      begin
+        parse_csv(string, quote_char)
+      rescue CSV::MalformedCSVError
+      end
+    end
+
+    def parse_csv(string, quote_char)
+      CSV.parse(tolerate_escaping(string, quote_char),
+        quote_char: quote_char,
+        col_sep: obtain_delimeter(string, quote_char)
+      )
+    end
+
+    def tolerate_escaping(string, quote_char)
+      string.gsub("\\#{quote_char}", "#{quote_char}#{quote_char}")
     end
 
     def obtain_delimeter(file, quote_char)
