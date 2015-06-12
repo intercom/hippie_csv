@@ -1,10 +1,8 @@
 # HippieCSV
 
-## Build status
-
 [ ![Codeship Status for intercom/hippie_csv](https://codeship.com/projects/f3b188e0-f312-0132-75cb-5ed004d44c71/status?branch=master)](https://codeship.com/projects/85324)
 
-Ruby's `CSV` is great. It complies with the [CSV spec](http://example.com/)
+Ruby's `CSV` is great. It complies with the [proposed CSV spec](https://www.ietf.org/rfc/rfc4180.txt)
 pretty well. If you pass its methods bad or incompliant CSVs, it’ll rightfully
 and loudly complain. It’s great 👍
 
@@ -39,7 +37,7 @@ strings).
 ```ruby
 require 'hippie_csv'
 
-HippieCSV.read("./data.csv")
+HippieCSV.read("path/to/data.csv")
 
 HippieCSV.parse(csv_string)
 ```
@@ -52,7 +50,7 @@ HippieCSV.parse(csv_string)
 - Forgives invalid newlines in quoted CSVs
 - Heals many encoding issues (and aggressively forces UTF-8)
 - Deals with many miscellaneous malformed types of CSVs
-- Works when a [byte order mark](http://example.com) is present
+- Works when a [byte order mark](https://en.wikipedia.org/wiki/Byte_order_mark) is present
 
 ## Contributing
 
