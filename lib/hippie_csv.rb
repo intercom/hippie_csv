@@ -1,18 +1,15 @@
 require "hippie_csv/version"
-require "hippie_csv/constants"
-require "hippie_csv/operations"
-require "csv"
+require "hippie_csv/support"
+require "hippie_csv/errors"
 
 module HippieCsv
-  def self.parse(path)
-    string = Operations.file_path_to_string(path)
+  def self.read(path)
+    string = Support.file_path_to_string(path)
+    parse(string)
+  end
 
-    Operations.encode!(string)
-
-    QUOTE_CHARACTERS.find do |quote_character|
-      Operations.rescuing_malformed do
-        return Operations.parse_csv(string, quote_character)
-      end
-    end
+  def self.parse(string)
+    Support.encode!(string)
+    Support.maybe_parse(string) || UnableToParseError.explain
   end
 end

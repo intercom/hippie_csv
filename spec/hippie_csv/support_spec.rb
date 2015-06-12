@@ -1,10 +1,10 @@
 require "spec_helper"
 
-describe HippieCsv::Operations do
+describe HippieCsv::Support do
 
   describe ".file_to_string" do
     let(:file_path) { fixture_path(:normal) }
-    let(:result) { HippieCsv::Operations.file_path_to_string(file_path) }
+    let(:result) { HippieCsv::Support.file_path_to_string(file_path) }
 
     it "provides a string" do
       expect(result.class).to eq String
@@ -56,6 +56,12 @@ describe HippieCsv::Operations do
         expect(rows).to eq(2)
         expect(columns).to eq(3)
       end
+    end
+  end
+
+  describe ".maybe_parse" do
+    it "needs to be written" do
+      raise NotImplementedError # TODO write this test
     end
   end
 
