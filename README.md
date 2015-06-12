@@ -1,5 +1,9 @@
 # HippieCsv
 
+## Build status
+
+[ ![Codeship Status for intercom/hippie_csv](https://codeship.com/projects/f3b188e0-f312-0132-75cb-5ed004d44c71/status?branch=master)](https://codeship.com/projects/85324)
+
 TODO: Write a gem description
 
 ## Installation
