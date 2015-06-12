@@ -1,10 +1,10 @@
 require "spec_helper"
 
-describe HippieCsv::Support do
+describe HippieCSV::Support do
 
   describe ".file_to_string" do
     let(:file_path) { fixture_path(:normal) }
-    let(:result) { HippieCsv::Support.file_path_to_string(file_path) }
+    let(:result) { HippieCSV::Support.file_path_to_string(file_path) }
 
     it "provides a string" do
       expect(result.class).to eq String

@@ -1,9 +1,9 @@
 require "spec_helper"
 
-describe HippieCsv do
+describe HippieCSV do
 
   it "defines a version" do
-    expect(HippieCsv::VERSION).to eq('0.0.1')
+    expect(HippieCSV::VERSION).to eq('0.0.1')
   end
 
 end

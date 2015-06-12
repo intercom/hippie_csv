@@ -1,6 +1,6 @@
 require 'csv'
 
-module HippieCsv
+module HippieCSV
   QUOTE_CHARACTERS = %w(" ' |).freeze
   DELIMETERS = %W(, ; \t).freeze
   ENCODING = "utf-8".freeze

@@ -1,3 +1,3 @@
-module HippieCsv
+module HippieCSV
   VERSION = "0.0.1"
 end

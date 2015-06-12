@@ -1,4 +1,4 @@
-# HippieCsv
+# HippieCSV
 
 ## Build status
 
@@ -14,7 +14,7 @@ customers importing data to our system. You may want to support such cases.
 You may not always know the delimiter, nor the chosen quote character, in
 advance.
 
-HippieCsv is a ridiculously tolerant and liberal parser which aims to yield as
+HippieCSV is a ridiculously tolerant and liberal parser which aims to yield as
 much usable data as possible out of such real-world CSVs.
 
 ## Installation
@@ -39,9 +39,9 @@ strings).
 ```ruby
 require 'hippie_csv'
 
-HippieCsv.read("./data.csv")
+HippieCSV.read("./data.csv")
 
-HippieCsv.parse(csv_string)
+HippieCSV.parse(csv_string)
 ```
 
 ## Features
