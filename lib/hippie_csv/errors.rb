@@ -1,7 +1,7 @@
 module HippieCSV
   class UnableToParseError < StandardError
-    def self.explain
-      raise new "Something went wrong. Report this CSV: https://github.com/intercom/hippie_csv"
+    def initialize(msg = "Something went wrong. Report this CSV: https://github.com/intercom/hippie_csv")
+      super(msg)
     end
   end
 end
