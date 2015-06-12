@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["stephen@intercom.io"]
   spec.summary       = %q{Liberally parse CSV files}
   spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.license       = "Apache License, Version 2.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
