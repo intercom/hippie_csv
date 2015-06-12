@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = HippieCsv::VERSION
   spec.authors       = ["Stephen O'Brien"]
   spec.email         = ["stephen@intercom.io"]
-  spec.summary       = %q{Liberally parse CSV files}
+  spec.summary       = %q{Tolerant, liberal CSV parsing}
   spec.homepage      = ""
   spec.license       = "Apache License, Version 2.0"
 
