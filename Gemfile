@@ -1,4 +1,2 @@
-source 'https://rubygems.org'
-
-# Specify your gem's dependencies in hippie_csv.gemspec
+source "https://rubygems.org"
 gemspec

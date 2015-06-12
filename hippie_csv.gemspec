@@ -1,14 +1,14 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'hippie_csv/version'
+require "hippie_csv/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "hippie_csv"
   spec.version       = HippieCsv::VERSION
   spec.authors       = ["Stephen O'Brien"]
   spec.email         = ["stephen@intercom.io"]
-  spec.summary       = %q{Liberally parse CSV files}
+  spec.summary       = %q{Tolerant, liberal CSV parsing}
   spec.homepage      = ""
   spec.license       = "Apache License, Version 2.0"
 
