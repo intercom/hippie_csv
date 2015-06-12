@@ -1,10 +1,10 @@
 require "spec_helper"
-require "CSV"
+require "csv"
 
 describe HippieCsv do
 
   def fixture_path(name)
-    File.expand_path("../fixtures/#{name}.CSV", __FILE__)
+    File.expand_path("../fixtures/#{name}.csv", __FILE__)
   end
 
   context 'hard/encountered problem cases' do
