@@ -37,7 +37,7 @@ describe HippieCsv do
   end
 
   describe "::ALTERNATE_ENCODING" do
-    it "defines an alternative encoding for temporary purposes" do
+    it "defines an alternative encoding for temporary force encoding purposes" do
       expect(HippieCsv::ALTERNATE_ENCODING).to eq('utf-16')
     end
 
@@ -63,12 +63,6 @@ describe HippieCsv do
 
     it "is not modifiable" do
       expect(HippieCsv::ENCODING_WITH_BOM).to be_frozen
-    end
-  end
-
-  describe "::MALFORMED_ERROR" do
-    it "defines expected internal csv malformed error" do
-      expect(HippieCsv::MALFORMED_ERROR).to eq(CSV::MalformedCSVError)
     end
   end
 end
