@@ -50,7 +50,7 @@ HippieCSV.parse(csv_string)
 - Forgives invalid newlines in quoted CSVs
 - Heals many encoding issues (and aggressively forces UTF-8)
 - Deals with many miscellaneous malformed types of CSVs
-- Works when a [byte order mark](http://example.com) is present
+- Works when a [byte order mark](https://en.wikipedia.org/wiki/Byte_order_mark) is present
 
 ## Contributing
 
