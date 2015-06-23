@@ -9,7 +9,7 @@ module HippieCSV
   end
 
   def self.parse(string)
-    Support.encode!(string)
+    string = Support.encode(string)
     Support.maybe_parse(string) || (raise UnableToParseError)
   end
 end

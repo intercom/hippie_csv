@@ -23,7 +23,7 @@ describe HippieCSV::Support do
     end
   end
 
-  describe ".encode!" do
+  describe ".encode" do
     context "with invalid byte sequence" do
       let(:string) { "\u0014\xFE\u000E\u0000" }
 
@@ -34,9 +34,7 @@ describe HippieCSV::Support do
       it "works" do
         expect(string).not_to be_valid_encoding
 
-        subject.encode!(string)
-
-        expect(string).to be_valid_encoding
+        expect(subject.encode(string)).to be_valid_encoding
       end
     end
 
@@ -48,9 +46,8 @@ describe HippieCSV::Support do
       end
 
       it "works" do
-        subject.encode!(string)
+        result = CSV.parse(subject.encode(string))
 
-        result = CSV.parse(string)
         rows, columns = result.size, result.first.size
 
         expect(rows).to eq(2)
