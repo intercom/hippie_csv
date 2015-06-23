@@ -1,4 +1,5 @@
 require "hippie_csv/constants"
+require "charlock_holmes"
 
 module HippieCSV
   module Support
@@ -7,13 +8,19 @@ module HippieCSV
         File.read(file_path, encoding: ENCODING_WITH_BOM)
       end
 
-      def encode!(string)
+      def encode(string)
         unless string.valid_encoding?
-          string.encode!(ALTERNATE_ENCODING, ENCODING, invalid: :replace, replace: "")
-          string.encode!(ENCODING, ALTERNATE_ENCODING)
+          current_encoding = CharlockHolmes::EncodingDetector.detect(string)[:encoding]
+
+          string = if !current_encoding.nil?
+            CharlockHolmes::Converter.convert(string, current_encoding, ENCODING)
+          else
+            string.encode(ALTERNATE_ENCODING, ENCODING, invalid: :replace, replace: "")
+                  .encode(ENCODING, ALTERNATE_ENCODING)
+          end
         end
 
-        string.encode!(string.encoding, universal_newline: true)
+        string.encode(string.encoding, universal_newline: true)
       end
 
       def maybe_parse(string)
