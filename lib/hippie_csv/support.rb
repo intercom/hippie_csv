@@ -1,5 +1,5 @@
 require "hippie_csv/constants"
-require "charlock_holmes"
+require "rchardet"
 
 module HippieCSV
   module Support
@@ -10,10 +10,10 @@ module HippieCSV
 
       def encode(string)
         unless string.valid_encoding?
-          current_encoding = CharlockHolmes::EncodingDetector.detect(string)[:encoding]
+          current_encoding = CharDet.detect(string)["encoding"]
 
           string = if !current_encoding.nil?
-            CharlockHolmes::Converter.convert(string, current_encoding, ENCODING)
+            string.encode(ENCODING, current_encoding)
           else
             string.encode(ALTERNATE_ENCODING, ENCODING, invalid: :replace, replace: "")
                   .encode(ENCODING, ALTERNATE_ENCODING)

@@ -101,13 +101,13 @@ describe HippieCSV do
       import = subject.read(path)
       expect(import[0].count).to eq(9)
     end
-
+    
     it "works for a hard case" do
       path = fixture_path(:accents_semicolon_windows_1252)
 
       import = subject.read(path)
       expect(import[0][1]).to eq("Jérome")
-      expect(import[1][0]).to eq("Héloïse")
+      expect(import[1][0]).to eq("Héloise")
     end
   end
 end
