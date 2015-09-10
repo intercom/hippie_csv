@@ -124,7 +124,7 @@ describe HippieCSV do
     it "works when many invalid quote types contained" do
       path = fixture_path(:bad_quoting)
 
-      expect { CSV.read(path) }.to raise_error
+      expect { CSV.read(path) }.to raise_error(CSV::MalformedCSVError)
       expect {
         import = subject.read(path)
         expect(import.map(&:count).uniq).to eq([11])
@@ -133,11 +133,18 @@ describe HippieCSV do
     end
 
     it "strips leading/trailing blank lines" do
-      path = fixture_path(:trailing_leading_lines)
+      path = fixture_path(:trailing_leading_blank_lines)
 
       import = subject.read(path)
       expect(import.first).not_to be_empty
       expect(import.last).not_to be_empty
+    end
+
+    it "maintains coherent column count when stripping blank lines" do
+      path = fixture_path(:trailing_leading_blank_lines)
+
+      import = subject.read(path)
+      expect(import.map(&:length).uniq.size).to eq(1)
     end
   end
 end
