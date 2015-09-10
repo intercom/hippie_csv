@@ -141,10 +141,12 @@ describe HippieCSV do
     end
 
     it "maintains coherent column count when stripping blank lines" do
-      path = fixture_path(:trailing_leading_blank_lines)
+      [:blank_lines_crlf, :trailing_leading_blank_lines].each do |fixture_name|
+        path = fixture_path(fixture_name)
 
-      import = subject.read(path)
-      expect(import.map(&:length).uniq.size).to eq(1)
+        import = subject.read(path)
+        expect(import.map(&:length).uniq.size).to eq(1)
+      end
     end
   end
 end
