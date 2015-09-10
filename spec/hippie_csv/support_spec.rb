@@ -68,7 +68,6 @@ describe HippieCSV::Support do
 
     it "works" do
       expect(subject).to receive(:guess_delimeter).with(string, quote_character).and_return(',')
-      expect(subject).to receive(:tolerate_escaping).with(string, quote_character).and_return(string)
 
       expect(subject.parse_csv(string, quote_character)).to eq(
         [["name", "email"], ["stephen", "test@example.com"]]

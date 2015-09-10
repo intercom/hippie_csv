@@ -5,8 +5,8 @@ describe HippieCSV do
   describe "::QUOTE_CHARACTERS" do
     let(:supported_quote_characters) { ['"', "'", "|"] }
 
-    it "defines supported quote characters" do
-      expect(HippieCSV::QUOTE_CHARACTERS).to match(supported_quote_characters)
+    it "supports common quote characters" do
+      expect(HippieCSV::QUOTE_CHARACTERS).to include(*supported_quote_characters)
     end
 
     it "is not modifiable" do

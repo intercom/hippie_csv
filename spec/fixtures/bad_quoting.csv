@@ -1,0 +1,8 @@
+id,full_name,email,support,admin_of,user_payment_count,user_payment_total,click_count,registration_date,user_status,email_validation
+1,Tom Stonew,tom@example.com,Stone's Soccer Club,Stone's Soccer Club,5,£1.16,96,3/31/2015 17:28:39,active,Y
+262,Mark J Collins,info@example.co,|Run N Hide Things Get Cancelled!|,Run N Hide | Things Get Cancelled!,0,NULL,0,7/2/2015 18:41:05,active,N
+474,Francis Daly,francisdaly@live.com,"\A Junction\"" Project Association""",NULL,0,NULL,1,8/13/2015 14:50:05,active,N
+640,mitchell miller,test@example.co.uk,Berkely ⦿ Club,NULL,0,NULL,1,9/9/2015 10:35:00,active,N
+646,Ash ,hi@example.com,"\NSAAA A" """,NULL,0,NULL,0,9/9/2015 14:21:21,active,N
+649,Ken Kenneth,ken@example.com,Lusk ∑ Club,Lusk ∑ Club,0,NULL,1,9/9/2015 21:45:24,active,Y
+650,Bam Gouldstone,bam@example.com,$ Shave Club,NULL,0,NULL,0,9/10/2015 6:43:07,active,N
