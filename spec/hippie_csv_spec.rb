@@ -124,7 +124,7 @@ describe HippieCSV do
     it "works when many invalid quote types contained" do
       path = fixture_path(:bad_quoting)
 
-      expect { CSV.read(path) }.to raise_error
+      expect { CSV.read(path) }.to raise_error(CSV::MalformedCSVError)
       expect {
         import = subject.read(path)
         expect(import.map(&:count).uniq).to eq([11])
