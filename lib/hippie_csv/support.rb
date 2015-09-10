@@ -27,13 +27,17 @@ module HippieCSV
 
       def maybe_parse(string)
         QUOTE_CHARACTERS.find do |quote_character|
-          rescuing_malformed { return parse_csv(string.strip, quote_character) }
+          [string, tolerate_escaping(string, quote_character)].find do |string_to_parse|
+            rescuing_malformed do
+              return parse_csv(string_to_parse.strip, quote_character)
+            end
+          end
         end
       end
 
       def parse_csv(string, quote_character)
         CSV.parse(
-          tolerate_escaping(string, quote_character),
+          string,
           quote_char: quote_character,
           col_sep: guess_delimeter(string, quote_character)
         )

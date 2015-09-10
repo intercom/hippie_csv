@@ -121,6 +121,17 @@ describe HippieCSV do
       expect(Time.now).to be_within(5).of(start_time)
     end
 
+    it "works when many invalid quote types contained" do
+      path = fixture_path(:bad_quoting)
+
+      expect { CSV.read(path) }.to raise_error
+      expect {
+        import = subject.read(path)
+        expect(import.map(&:count).uniq).to eq([11])
+        expect(import.count).to eq(8)
+      }.not_to raise_error
+    end
+
     it "strips leading/trailing blank lines" do
       path = fixture_path(:trailing_leading_lines)
 
