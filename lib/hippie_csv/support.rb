@@ -27,9 +27,7 @@ module HippieCSV
 
       def maybe_parse(string)
         QUOTE_CHARACTERS.find do |quote_character|
-          Support.rescuing_malformed do
-            return Support.parse_csv(string.strip, quote_character)
-          end
+          rescuing_malformed { return parse_csv(string.strip, quote_character) }
         end
       end
 
