@@ -21,7 +21,11 @@ module HippieCSV
             magical_encode(string)
           end
         end
-        string.gsub!(BLANK_LINE_REGEX, "")
+
+        DELIMETERS.each do |delimiter|
+          string.gsub!(blank_line_regex(delimiter), "")
+        end
+
         string.encode(string.encoding, universal_newline: true)
       end
 
@@ -29,7 +33,7 @@ module HippieCSV
         QUOTE_CHARACTERS.find do |quote_character|
           [string, tolerate_escaping(string, quote_character)].find do |string_to_parse|
             rescuing_malformed do
-              return parse_csv(string_to_parse.strip, quote_character)
+              return parse_csv(string_to_parse.squeeze("\n").strip, quote_character)
             end
           end
         end
@@ -62,6 +66,10 @@ module HippieCSV
       end
 
       private
+
+      def blank_line_regex(delimiter)
+        /^#{delimiter}+(\r\n|\r)$/
+      end
 
       def detect_encoding(string)
         CharDet.detect(string[0..ENCODING_SAMPLE_CHARACTER_COUNT])["encoding"]
