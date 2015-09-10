@@ -110,6 +110,17 @@ describe HippieCSV do
       expect(import[1][0]).to eq("Héloise")
     end
 
+    it "deals with a long, challenging file (and quickly)" do
+      start_time = Time.now
+      path = fixture_path(:never_ordered)
+
+      import = subject.read(path)
+
+      expect(import[0].count).to eq(10)
+      expect(import.count).to eq(32803)
+      expect(Time.now).to be_within(5).of(start_time)
+    end
+
     it "strips leading/trailing blank lines" do
       path = fixture_path(:trailing_leading_lines)
 
