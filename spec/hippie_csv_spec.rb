@@ -78,6 +78,15 @@ describe HippieCSV do
       expect(import[0].count).to eq(24)
     end
 
+    it "works with unescaped internal quotes" do
+      path = fixture_path(:internal_quotes)
+      expect { CSV.read(path) }.to raise_error(CSV::MalformedCSVError)
+
+      import = subject.read(path)
+      expect(import[1][1]).to eq("123")
+      expect(import[1][2]).to eq("James Jimmy Doe")
+    end
+
     it "works with escaped quotes" do
       path = fixture_path(:escaped_quotes)
 

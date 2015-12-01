@@ -31,7 +31,7 @@ module HippieCSV
 
       def maybe_parse(string)
         QUOTE_CHARACTERS.find do |quote_character|
-          [string, tolerate_escaping(string, quote_character)].find do |string_to_parse|
+          [string, tolerate_escaping(string, quote_character), dump_quotes(string, quote_character)].find do |string_to_parse|
             rescuing_malformed do
               return parse_csv(string_to_parse.squeeze("\n").strip, quote_character)
             end
@@ -45,6 +45,10 @@ module HippieCSV
           quote_char: quote_character,
           col_sep: guess_delimeter(string, quote_character)
         )
+      end
+
+      def dump_quotes(string, quote_character)
+        string.gsub(quote_character, "")
       end
 
       def rescuing_malformed
