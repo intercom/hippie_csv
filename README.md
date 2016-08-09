@@ -44,8 +44,8 @@ HippieCSV.parse(csv_string)
 
 ## Features
 
-- Deduces the delimiter (supports `,`, `;`, and `|`)
-- Deduces the quote character (supports `'` and `"`)
+- Deduces the delimiter (supports `,`, `;`, and `\t`)
+- Deduces the quote character (supports `'`, `"`, and `|`)
 - Forgives backslash escaped quotes in quoted CSVs
 - Forgives invalid newlines in quoted CSVs
 - Heals many encoding issues (and aggressively forces UTF-8)
