@@ -38,6 +38,17 @@ describe HippieCSV::Support do
       end
     end
 
+    context "with a string detected to be UTF-8 but with an invalid byte sequence" do
+      let(:utf8_string) { ("Rubyのメ" * HippieCSV::ENCODING_SAMPLE_CHARACTER_COUNT).force_encoding("utf-8") }
+      let(:string) { utf8_string << "\xBF"}
+
+      it "ensures encoding becomes valid" do
+        expect(string).not_to be_valid_encoding
+
+        expect(subject.encode(string)).to be_valid_encoding
+      end
+    end
+
     context 'with unquoted fields and \r or \n' do
       let(:string) { "id,first_name,last_name\r123,Heinrich,Schütz\r\n" }
 
