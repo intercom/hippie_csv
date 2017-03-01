@@ -9,18 +9,7 @@ module HippieCSV
       end
 
       def encode(string)
-        unless string.valid_encoding?
-          string = begin
-            current_encoding = detect_encoding(string)
-            if !current_encoding.nil?
-              string.encode(ENCODING, current_encoding)
-            else
-              magical_encode(string)
-            end
-          rescue Encoding::InvalidByteSequenceError
-            magical_encode(string)
-          end
-        end
+        string = ensure_valid_encoding(string)
 
         DELIMETERS.each do |delimiter|
           string.gsub!(blank_line_regex(delimiter), "")
@@ -70,6 +59,20 @@ module HippieCSV
       end
 
       private
+
+      def ensure_valid_encoding(string)
+        return string if string.valid_encoding?
+
+        current_encoding = detect_encoding(string)
+
+        if !current_encoding.nil? && current_encoding != ENCODING
+          string.encode(ENCODING, current_encoding)
+        else
+          magical_encode(string)
+        end
+      rescue Encoding::InvalidByteSequenceError
+        magical_encode(string)
+      end
 
       def blank_line_regex(delimiter)
         /^#{delimiter}+(\r\n|\r)$/
