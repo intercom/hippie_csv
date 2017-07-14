@@ -46,6 +46,39 @@ describe HippieCSV do
     end
   end
 
+  describe ".stream" do
+    let(:path) { double }
+
+    it "encodes the string" do
+      expect(subject::Support).to receive(:encode).with(string)
+      allow(subject::Support).to receive(:maybe_stream).and_return(double)
+
+      subject.stream(path, string)
+    end
+
+    it "defers to support stream method" do
+      result = double
+      expect(subject::Support).to receive(:maybe_stream).with(path, string).and_return(result)
+
+      expect(subject.stream(path, string)).to eq(result)
+    end
+
+    context "when unable to stream" do
+      before do
+        expect(subject::Support).to receive(:maybe_stream).and_return(nil)
+      end
+
+      it "raises an error" do
+        expect {
+          subject.stream(path, string)
+        }.to raise_error(
+          subject::UnableToParseError,
+          "Something went wrong. Report this CSV: https://github.com/intercom/hippie_csv"
+        )
+      end
+    end
+  end
+
   context "integration cases: hard/encountered problems" do
     it "works when a BOM is present in the file" do
       path = fixture_path(:with_byte_order_mark)

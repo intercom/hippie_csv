@@ -12,4 +12,9 @@ module HippieCSV
     string = Support.encode(string)
     Support.maybe_parse(string) || (raise UnableToParseError)
   end
+
+  def self.stream(path, string)
+    string = Support.encode(string)
+    Support.maybe_stream(path, string) || (raise UnableToParseError)
+  end
 end

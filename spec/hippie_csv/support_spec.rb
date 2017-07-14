@@ -86,6 +86,19 @@ describe HippieCSV::Support do
     end
   end
 
+  describe ".stream_csv" do
+    let(:string) { "name,email\nstephen,test@example.com"}
+    let(:quote_character) { "\"" }
+    let(:file_path) { fixture_path(:normal) }
+
+    it "works" do
+      expect(subject).to receive(:guess_delimeter).with(subject.file_path_to_string(file_path), quote_character).and_return(',')
+      expect(subject.stream_csv(file_path, subject.file_path_to_string(file_path), quote_character)[0]).to eq(
+        ["id", "email", "name", "country", "city", "created_at", "admin"]
+      )
+    end
+  end
+
   describe ".rescuing_malformed" do
     let(:error) { CSV::MalformedCSVError }
     let(:will_error) { -> { raise error } }
