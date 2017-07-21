@@ -31,8 +31,8 @@ Or install it yourself as:
 
 ## Usage
 
-Exposes two public methods: `read` (for paths to files), and `parse` (for
-strings).
+Exposes three public methods: `read` (for paths to files), `parse` (for
+strings), and `stream` (for parsing a CSV file line by line from the file - useful for larger files to save memory)
 
 ```ruby
 require 'hippie_csv'
@@ -40,6 +40,8 @@ require 'hippie_csv'
 HippieCSV.read("path/to/data.csv")
 
 HippieCSV.parse(csv_string)
+
+HippieCSV.stream("path/to/data.csv", csv_string)
 ```
 
 ## Features
