@@ -68,8 +68,23 @@ describe HippieCSV::Support do
   end
 
   describe ".maybe_parse" do
-    it "needs to be written" do
-      skip # TODO write this test
+    let(:file_path) { fixture_path(:small_file) }
+    it "works" do
+      expect(subject.maybe_parse(subject.file_path_to_string(file_path))).to eq(
+        [["name", "email"], ["stephen", "test@example.com"]]
+      )
+    end
+  end
+
+  describe ".maybe_stream" do
+    let(:file_path) { fixture_path(:small_file) }
+    it "works" do
+      result = []
+      subject.maybe_stream(file_path) { |row| result << row }
+
+      expect(result).to eq(
+        [["name", "email"], ["stephen", "test@example.com"]]
+      )
     end
   end
 
@@ -82,19 +97,6 @@ describe HippieCSV::Support do
 
       expect(subject.parse_csv(string, quote_character)).to eq(
         [["name", "email"], ["stephen", "test@example.com"]]
-      )
-    end
-  end
-
-  describe ".stream_csv" do
-    let(:string) { "name,email\nstephen,test@example.com"}
-    let(:quote_character) { "\"" }
-    let(:file_path) { fixture_path(:normal) }
-
-    it "works" do
-      expect(subject).to receive(:guess_delimeter).with(subject.file_path_to_string(file_path), quote_character).and_return(',')
-      expect(subject.stream_csv(file_path, subject.file_path_to_string(file_path), quote_character)[0]).to eq(
-        ["id", "email", "name", "country", "city", "created_at", "admin"]
       )
     end
   end
