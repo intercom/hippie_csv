@@ -19,20 +19,12 @@ module HippieCSV
       end
 
       def maybe_parse(string)
+        encoded_string = encode(string)
+
         QUOTE_CHARACTERS.find do |quote_character|
-          [string, tolerate_escaping(string, quote_character), dump_quotes(string, quote_character)].find do |string_to_parse|
+          [encoded_string, tolerate_escaping(encoded_string, quote_character), dump_quotes(encoded_string, quote_character)].find do |string_to_parse|
             rescuing_malformed do
               return parse_csv(string_to_parse.squeeze("\n").strip, quote_character)
-            end
-          end
-        end
-      end
-
-      def maybe_stream(path, string)
-        QUOTE_CHARACTERS.find do |quote_character|
-          [string, tolerate_escaping(string, quote_character), dump_quotes(string, quote_character)].find do |string_to_parse|
-            rescuing_malformed do
-              return stream_csv(path, string_to_parse.squeeze("\n").strip, quote_character)
             end
           end
         end
@@ -46,12 +38,11 @@ module HippieCSV
         )
       end
 
-      def stream_csv(file_path, string, quote_character)
-        parsed_csv = []
-        CSV.foreach(file_path, { quote_char: quote_character, col_sep: guess_delimeter(string, quote_character) }) do |row|
-          parsed_csv << row
+      def maybe_stream(path, &block)
+        File.foreach(path, encoding: ENCODING_WITH_BOM) do |line|
+          row = maybe_parse(line)
+          block.call(row.first) if row.first
         end
-        parsed_csv
       end
 
       def dump_quotes(string, quote_character)
