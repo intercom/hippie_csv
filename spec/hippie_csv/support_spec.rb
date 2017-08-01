@@ -2,27 +2,6 @@ require "spec_helper"
 
 describe HippieCSV::Support do
 
-  describe ".file_to_string" do
-    let(:file_path) { fixture_path(:normal) }
-    let(:result) { HippieCSV::Support.file_path_to_string(file_path) }
-
-    it "provides a string" do
-      expect(result.class).to eq String
-    end
-
-    it "reads the file" do
-      expect(result.slice(0,8)).to eq 'id,email'
-    end
-
-    context "with a byte order mark" do
-      let(:file_path) { fixture_path(:with_byte_order_mark) }
-
-      it "works" do
-        expect(result).to eq '"Name","Email Address","Date Added"'
-      end
-    end
-  end
-
   describe ".encode" do
     context "with invalid byte sequence" do
       let(:string) { "\u0014\xFE\u000E\u0000" }
@@ -70,7 +49,7 @@ describe HippieCSV::Support do
   describe ".maybe_parse" do
     let(:file_path) { fixture_path(:small_file) }
     it "works" do
-      expect(subject.maybe_parse(subject.file_path_to_string(file_path))).to eq(
+      expect(subject.maybe_parse(File.read(file_path))).to eq(
         [["name", "email"], ["stephen", "test@example.com"]]
       )
     end
