@@ -4,7 +4,7 @@ require "hippie_csv/errors"
 
 module HippieCSV
   def self.read(path)
-    string = Support.file_path_to_string(path)
+    string = File.read(path, encoding: ENCODING_WITH_BOM)
     parse(string)
   end
 

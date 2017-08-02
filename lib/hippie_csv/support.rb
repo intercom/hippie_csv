@@ -4,10 +4,6 @@ require "rchardet"
 module HippieCSV
   module Support
     class << self
-      def file_path_to_string(file_path)
-        File.read(file_path, encoding: ENCODING_WITH_BOM)
-      end
-
       def encode(string)
         string = ensure_valid_encoding(string)
 

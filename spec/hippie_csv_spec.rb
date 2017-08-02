@@ -6,14 +6,21 @@ describe HippieCSV do
   let(:string) { "test" }
 
   describe ".read" do
-    let(:path) { double }
 
-    it "converts to string and parses" do
-      expect(subject::Support).to receive(:file_path_to_string).with(path).and_return(string)
-      expect(subject).to receive(:parse).with(string)
+    it "reads and parses the file" do
+      path = fixture_path(:normal)
 
-      subject.read(path)
+      result = subject.read(path)
+      expect(result.first[0..1]).to eq(["id", "email"])
     end
+
+    it "reads and parses the file with a byte order mark" do
+      path = fixture_path(:with_byte_order_mark)
+
+      result = subject.read(path)
+      expect(result).to eq([["Name", "Email Address", "Date Added"]])
+    end
+
   end
 
   describe ".parse" do
