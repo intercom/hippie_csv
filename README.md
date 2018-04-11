@@ -33,7 +33,7 @@ Or install it yourself as:
 
 Exposes three public methods:
 1. `.read` a file path to an array. Reads from the file all at once, building the whole CSV object in memory.
-2. `.parse` an in memory string to an array.
+2. `.parse` an in-memory string to an array.
 3. `.stream` from a file path and parse line by line, calling a given block on each row.
 
 **Note**: Processing large files using read or parse is a memory intensive operation. Use stream for parsing a CSV file line by line from the file to save memory. This method will use less memory but take longer, as we run each line through parse.
