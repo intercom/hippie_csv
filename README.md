@@ -15,7 +15,7 @@ advance.
 HippieCSV is a ridiculously tolerant and liberal parser which aims to yield as
 much usable data as possible out of such real-world CSVs.
 
-## Installation
+## Installations
 
 Add this line to your application's Gemfile:
 
